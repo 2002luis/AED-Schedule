@@ -21,11 +21,19 @@
 
 
 int main(){
-    std::map<std::string,UC> ucs = Filereader::readUcs();
+    std::map<std::string,UC> ucs = Filereader::readClasses(Filereader::readUcs());
 
 
+    for(auto i : ucs){
+        if(i.second.code=="L.EIC001"){
+            for (auto j : i.second.classes){
+                if(j.second.name=="1LEIC01") cout << Timetable(j.second);
+            }
+        }
+    }
 
 
+/*
     Lecture teste1("Teste","Monday",8,2,"Gay"), teste2("FSI", "Monday",10,1,"T");
     Lecture teste3("Canada","Tuesday",9,1,"P");
     Class_Hour testClass("Gay"), testClass2("Gay2");
@@ -36,4 +44,5 @@ int main(){
     testStudent.classes.push_back(&testClass);
     testStudent.classes.push_back(&testClass2);
     std::cout << Timetable(testStudent) << std::endl;
+*/
 }
