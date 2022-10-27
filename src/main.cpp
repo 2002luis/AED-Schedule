@@ -22,8 +22,10 @@
 
 int main(){
     std::map<std::string,UC> ucs = Filereader::readClasses(Filereader::readUcs());
-
-
+    std::map<std::string, unsigned long int> studentNames;
+    std::map<unsigned long int, Student> students = Filereader::readStudents(studentNames,ucs);
+    cout << Timetable(students.at(studentNames.at("Gisela")));
+    /*
     for(auto i : ucs){
         if(i.second.code=="L.EIC001"){
             for (auto j : i.second.classes){
@@ -31,7 +33,7 @@ int main(){
             }
         }
     }
-
+    */
 
 /*
     Lecture teste1("Teste","Monday",8,2,"Gay"), teste2("FSI", "Monday",10,1,"T");
