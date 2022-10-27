@@ -1,3 +1,1 @@
-"C:\Program Files\JetBrains\CLion 2022.2.1\bin\cmake\win\bin\cmake.exe" -E rm -f CMakeFiles\schedule.dir/objects.a
-C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\ar.exe qc CMakeFiles\schedule.dir/objects.a @CMakeFiles\schedule.dir\objects1.rsp
-C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE -g -Wl,--whole-archive CMakeFiles\schedule.dir/objects.a -Wl,--no-whole-archive -o schedule.exe -Wl,--out-implib,libschedule.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\schedule.dir\linklibs.rsp
+/usr/bin/c++ -g CMakeFiles/schedule.dir/src/Filereader.cpp.o CMakeFiles/schedule.dir/src/Class_Hour.cpp.o CMakeFiles/schedule.dir/src/Lecture.cpp.o CMakeFiles/schedule.dir/src/main.cpp.o CMakeFiles/schedule.dir/src/overloads.cpp.o CMakeFiles/schedule.dir/src/Timetable.cpp.o CMakeFiles/schedule.dir/src/Uc.cpp.o CMakeFiles/schedule.dir/src/Student.cpp.o -o schedule 

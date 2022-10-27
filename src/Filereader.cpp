@@ -1,3 +1,9 @@
+#include "Filereader.h"
+#include <map>
+#include <string>
+#include <iostream>
+#include <fstream>
+
 std::string Filereader::removeComma(std::string in){
     std::string out = "";
     for(unsigned long int i = 0; i < in.size(); i++){
@@ -38,3 +44,4 @@ map<std::string, UC> Filereader::readClasses(map<std::string, UC> in) {
     }
     return out;
 }
+

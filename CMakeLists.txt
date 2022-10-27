@@ -5,7 +5,7 @@ include_directories(src)
 
 set(SOURCE
 
-        src/Filereader.cpp src/Filereader.h src/Class_Hour.cpp src/Class_Hour.h src/Lecture.h src/Lecture.cpp src/main.cpp src/overloads.cpp src/Student.h src/Timetable.cpp src/Timetable.h src/Uc.cpp src/Uc.h src/Class_Hour.cpp src/Class_Hour.h src/overloads.h src/Student.cpp src/Filereader.cpp src/Filereader.h)
+        src/Filereader.cpp src/Filereader.h src/Class_Hour.cpp src/Class_Hour.h src/Lecture.h src/Lecture.cpp src/main.cpp src/overloads.cpp src/Student.h src/Timetable.cpp src/Timetable.h src/Uc.cpp src/Uc.h src/Class_Hour.cpp src/Class_Hour.h src/overloads.h src/Student.cpp src/Filereader.cpp)
 
 
 add_executable(${PROJECT_NAME} ${SOURCE})

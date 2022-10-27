@@ -27,7 +27,7 @@ public:
     static std::string removeComma(std::string in);
     static map<std::string,UC> readUcs();
     static map<std::string,UC> readClasses(map<std::string, UC> in);
-
+    static set<Student> readStudents();
 
 
 
