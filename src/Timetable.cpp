@@ -9,7 +9,7 @@
 
 Timetable::Timetable(Lecture lecture){
 
-    std::vector<std::string> temp(30,"\t");
+    std::vector<std::string> temp(30,"\t\t");
 
     for(int i = 0; i < 5; i++) this->horario.push_back(temp);
 
@@ -24,7 +24,7 @@ Timetable::Timetable(Lecture lecture){
 
 Timetable::Timetable(Class_Hour turma){
 
-    std::vector<std::string> temp(30,"\t");
+    std::vector<std::string> temp(30,"\t\t");
 
     for(int i = 0; i < 5; i++) this->horario.push_back(temp);
 
@@ -35,7 +35,7 @@ Timetable::Timetable(Class_Hour turma){
 
 Timetable::Timetable(Student student){
 
-    std::vector<std::string> temp(30,"\t");
+    std::vector<std::string> temp(30,"\t\t");
 
     for(int i = 0; i < 5; i++) this->horario.push_back(temp);
 
@@ -48,7 +48,7 @@ bool Timetable::add(Timetable a){
     std::vector<std::string> out;
     for(int i = 0; i < 5; i++){
         for(int j = 0; j < 30; j++){
-            if(a.horario[i][j]!="\t" && this->horario[i][j]!="\t" && this->horario[i][j]!=a.horario[i][j]) return(false);
+            if(a.horario[i][j]!="\t\t" && this->horario[i][j]!="\t\t" && this->horario[i][j]!=a.horario[i][j]) return(false);
         }
     }
     for(int i = 0; i < 5; i++){

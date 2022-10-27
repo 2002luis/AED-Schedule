@@ -14,7 +14,7 @@
 class UC{
     public:
         UC(std::string code);
-        std::map<std::string,Class_Hour> classes;
+        std::map<std::string,Class_Hour*> classes;
         std::string code;
 };
 

@@ -24,7 +24,7 @@ int main(){
     std::map<std::string,UC> ucs = Filereader::readClasses(Filereader::readUcs());
     std::map<std::string, unsigned long int> studentNames;
     std::map<unsigned long int, Student> students = Filereader::readStudents(studentNames,ucs);
-    cout << Timetable(students.at(studentNames.at("Gisela")));
+    cout << Timetable(students.find(studentNames.find("Gisela")->second)->second);
     /*
     for(auto i : ucs){
         if(i.second.code=="L.EIC001"){
