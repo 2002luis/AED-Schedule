@@ -39,10 +39,11 @@ Filereader:: Filereader(){
  */
 
 std::string Lecture::toString() {
-    return this->classCode + ' ' + this->classType;
+    return this->ucCode + ' ' + this->classType;
 }
 
-Lecture::Lecture(std::string classCode, std::string day, float startTime, float duration, std::string classType) {
+Lecture::Lecture(std::string classCode, std::string day, float startTime, float duration, std::string classType, std::string ucCode) {
+    this->ucCode = ucCode;
     this->classCode=classCode;
     this->startTime=startTime;
     this->duration=duration;

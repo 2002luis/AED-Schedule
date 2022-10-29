@@ -24,7 +24,7 @@ map<std::string,UC> Filereader::readUcs() {
         std::string ucName, className;
         iss >> ucName >> className;
         if(out.find(ucName)==out.end()) out.insert(pair<std::string ,UC>(ucName,UC(ucName)));
-        out.find(ucName)->second.classes.insert(pair<std::string,Class_Hour*>(className,new Class_Hour(className)));
+        out.find(ucName)->second.classes.insert(pair<std::string,Class_Hour*>(className,new Class_Hour(className,ucName)));
     }
     return(out);
 }
@@ -41,7 +41,7 @@ map<std::string, UC> Filereader::readClasses(map<std::string, UC> in) {
         float startHour, duration;
         iss >> classCode >> ucCode >> day >> startHour >> duration >> classType;
         if(out.find(ucCode)!=out.end() && out.find(ucCode)->second.classes.find(classCode)!=out.find(ucCode)->second.classes.end())
-            out.find(ucCode)->second.classes.find(classCode)->second->lectures.push_back(Lecture(classCode,day,startHour,duration,classType));
+            out.find(ucCode)->second.classes.find(classCode)->second->lectures.push_back(Lecture(classCode,day,startHour,duration,classType,ucCode));
     }
     return out;
 }
