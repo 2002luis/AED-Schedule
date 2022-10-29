@@ -2,10 +2,7 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "schedule.exe"
-		},
-		{
-			"path" : "schedule.pdb"
+			"path" : "schedule"
 		}
 	],
 	"backtrace" : 1,
@@ -14,7 +11,8 @@
 		"commands" : 
 		[
 			"add_executable",
-			"include_directories"
+			"include_directories",
+			"target_compile_features"
 		],
 		"files" : 
 		[
@@ -28,13 +26,19 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 10,
+				"line" : 11,
 				"parent" : 0
 			},
 			{
 				"command" : 1,
 				"file" : 0,
 				"line" : 4,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 15,
 				"parent" : 0
 			}
 		]
@@ -46,16 +50,27 @@
 			[
 				{
 					"fragment" : "-g   -g"
+				},
+				{
+					"fragment" : "-std=gnu++17"
 				}
 			],
 			"includes" : 
 			[
 				{
 					"backtrace" : 2,
-					"path" : "C:/Users/up202005832/Desktop/AED/src"
+					"path" : "/home/feld/Documents/Projetos/AED/src"
 				}
 			],
 			"language" : "CXX",
+			"languageStandard" : 
+			{
+				"backtraces" : 
+				[
+					3
+				],
+				"standard" : "17"
+			},
 			"sourceIndexes" : 
 			[
 				0,
@@ -81,16 +96,12 @@
 			{
 				"fragment" : "",
 				"role" : "flags"
-			},
-			{
-				"fragment" : "-lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32",
-				"role" : "libraries"
 			}
 		],
 		"language" : "CXX"
 	},
 	"name" : "schedule",
-	"nameOnDisk" : "schedule.exe",
+	"nameOnDisk" : "schedule",
 	"paths" : 
 	{
 		"build" : ".",

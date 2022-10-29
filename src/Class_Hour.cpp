@@ -4,6 +4,7 @@
 
 #include "Class_Hour.h"
 
-Class_Hour::Class_Hour(std::string name) {
+Class_Hour::Class_Hour(std::string name, std::string ucName) {
     this->name = name;
+    this->ucName = ucName;
 }

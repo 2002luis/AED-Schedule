@@ -9,11 +9,11 @@
 
 class Lecture{
     public:
-        std::string classCode;
+        std::string classCode, ucCode;
         int day;
         float startTime, duration;
         std::string classType;
-        Lecture(std::string classCode, std::string day, float startTime, float duration, std::string classType);
+        Lecture(std::string classCode, std::string day, float startTime, float duration, std::string classType, std::string ucCode);
         std::string toString();
 };
 

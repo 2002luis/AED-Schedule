@@ -9,13 +9,13 @@
 #include <vector>
 
 #include "Class_Hour.h"
+#include <map>
 
 class UC{
     public:
-        UC(int code);
-        std::vector<Class_Hour> classes;
-        int code;
-        std::string toString();
+        UC(std::string code);
+        std::map<std::string,Class_Hour*> classes;
+        std::string code;
 };
 
 

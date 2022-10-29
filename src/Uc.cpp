@@ -4,12 +4,6 @@
 #include <string>
 #include "Uc.h"
 
-UC::UC(int code){
+UC::UC(std::string code){
     this->code = code;
-}
-
-std::string UC::toString(){
-    std::string out = "" + code;
-    while(out.size()<3) out = '0'+out;
-    return("L.EIC"+out);
 }
