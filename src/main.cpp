@@ -9,6 +9,7 @@
 #include "Uc.h"
 #include "overloads.h"
 #include "Filereader.h"
+#include "Program_data.h"
 #include <iostream>
 #include <vector>
 #include <set>
@@ -21,10 +22,27 @@
 
 
 int main(){
-    std::map<std::string,UC> ucs = Filereader::readClasses(Filereader::readUcs());
-    std::map<std::string, unsigned long int> studentNames;
-    std::map<unsigned long int, Student> students = Filereader::readStudents(studentNames,ucs);
-    cout << Timetable(students.find(studentNames.find("Gisela")->second)->second);
+
+    Program_data sus = Program_data();
+    Filereader::readUcs(sus);
+    Filereader::readClasses(sus);
+    Filereader::readStudents(sus);
+
+    cout << Timetable(*sus.getStudent(202071557));
+    /*
+    int alunosUcTurma(string turma, string uc, map<unsigned long int, Student> students){
+        int size = 0;
+        std::map<unsigned long int, Student>::iterator it;
+        for(it = students.begin(); it != students.end(); it++){ //students
+            for(size_t i = 0; i < it->second.classes.size(); i++){
+                if(it->second.classes[i]->ucName == uc && it->second.classes[i]->name == turma){
+                    cout << "O aluno -" << it->first << " pertence a turma " << turma << " da uc " << uc << endl;
+                    size += 1;
+                }
+            }
+        }
+        return size;
+    }*/
     /*
     for(auto i : ucs){
         if(i.second.code=="L.EIC001"){

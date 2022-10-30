@@ -14,6 +14,7 @@
 #include "Class_Hour.h"
 #include "Lecture.h"
 #include "Student.h"
+#include "Program_data.h"
 #include <fstream>
 #include <string.h>
 
@@ -25,9 +26,9 @@ class Filereader {
 public:
     Filereader();
     static std::string removeComma(std::string in);
-    static map<std::string,UC> readUcs();
-    static map<std::string,UC> readClasses(map<std::string, UC> in);
-    static map<unsigned long int,Student> readStudents(map<std::string, unsigned long int> &students, map<std::string, UC> classes);
+    static void readUcs(Program_data& data);
+    static void readClasses(Program_data &data);
+    static void readStudents(Program_data &data);
 };
 
 

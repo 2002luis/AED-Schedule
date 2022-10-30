@@ -9,13 +9,15 @@
 #include <vector>
 
 #include "Class_Hour.h"
+#include "Uc.h"
 
 class Student{
     public:
         std::string name;
         unsigned long int num;
-        std::vector<Class_Hour*> classes;
+        std::map<UC*,std::string > classes; //turmas
         Student(std::string name, unsigned long int num);
+
     
 };
 #endif

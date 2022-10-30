@@ -8,128 +8,140 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/home/feld/Documents/Projetos/AED/cmake-build-debug"/>
+				<Option working_dir="C:/Users/tomas/Downloads/AED-Schedule-filereader/AED-Schedule/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/feld/Documents/Projetos/AED/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/feld/Documents/Projetos/AED/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/feld/Documents/Projetos/AED/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/feld/Documents/Projetos/AED/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/tomas/Downloads/AED-Schedule-filereader/AED-Schedule/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/tomas/Downloads/AED-Schedule-filereader/AED-Schedule/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/tomas/Downloads/AED-Schedule-filereader/AED-Schedule/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/tomas/Downloads/AED-Schedule-filereader/AED-Schedule/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="schedule">
-				<Option output="/home/feld/Documents/Projetos/AED/cmake-build-debug/schedule" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/feld/Documents/Projetos/AED/cmake-build-debug"/>
+				<Option output="C:/Users/tomas/Downloads/AED-Schedule-filereader/AED-Schedule/cmake-build-debug/schedule.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/tomas/Downloads/AED-Schedule-filereader/AED-Schedule/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/home/feld/Documents/Projetos/AED/src"/>
-					<Add directory="/usr/include/c++/9"/>
-					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
-					<Add directory="/usr/include/c++/9/backward"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/usr/include/x86_64-linux-gnu"/>
-					<Add directory="/usr/include"/>
+					<Add directory="C:/Users/tomas/Downloads/AED-Schedule-filereader/AED-Schedule/src"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2022.2.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2022.2.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2022.2.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2022.2.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2022.2.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../include"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2022.2.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2022.2.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/feld/Documents/Projetos/AED/cmake-build-debug/Makefile&quot;  VERBOSE=1 schedule"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/feld/Documents/Projetos/AED/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/feld/Documents/Projetos/AED/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/feld/Documents/Projetos/AED/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/tomas/Downloads/AED-Schedule-filereader/AED-Schedule/cmake-build-debug/Makefile&quot;  VERBOSE=1 schedule"/>
+					<CompileFile command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/tomas/Downloads/AED-Schedule-filereader/AED-Schedule/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/tomas/Downloads/AED-Schedule-filereader/AED-Schedule/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/tomas/Downloads/AED-Schedule-filereader/AED-Schedule/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="schedule/fast">
-				<Option output="/home/feld/Documents/Projetos/AED/cmake-build-debug/schedule" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/feld/Documents/Projetos/AED/cmake-build-debug"/>
+				<Option output="C:/Users/tomas/Downloads/AED-Schedule-filereader/AED-Schedule/cmake-build-debug/schedule.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/tomas/Downloads/AED-Schedule-filereader/AED-Schedule/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/home/feld/Documents/Projetos/AED/src"/>
-					<Add directory="/usr/include/c++/9"/>
-					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
-					<Add directory="/usr/include/c++/9/backward"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/usr/include/x86_64-linux-gnu"/>
-					<Add directory="/usr/include"/>
+					<Add directory="C:/Users/tomas/Downloads/AED-Schedule-filereader/AED-Schedule/src"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2022.2.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2022.2.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2022.2.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2022.2.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2022.2.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../include"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2022.2.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2022.2.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/feld/Documents/Projetos/AED/cmake-build-debug/Makefile&quot;  VERBOSE=1 schedule/fast"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/feld/Documents/Projetos/AED/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/feld/Documents/Projetos/AED/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/feld/Documents/Projetos/AED/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/tomas/Downloads/AED-Schedule-filereader/AED-Schedule/cmake-build-debug/Makefile&quot;  VERBOSE=1 schedule/fast"/>
+					<CompileFile command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/tomas/Downloads/AED-Schedule-filereader/AED-Schedule/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/tomas/Downloads/AED-Schedule-filereader/AED-Schedule/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/tomas/Downloads/AED-Schedule-filereader/AED-Schedule/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/home/feld/Documents/Projetos/AED/cmake-build-debug"/>
+				<Option working_dir="C:/Users/tomas/Downloads/AED-Schedule-filereader/AED-Schedule/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/feld/Documents/Projetos/AED/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/feld/Documents/Projetos/AED/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/feld/Documents/Projetos/AED/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/feld/Documents/Projetos/AED/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/tomas/Downloads/AED-Schedule-filereader/AED-Schedule/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/tomas/Downloads/AED-Schedule-filereader/AED-Schedule/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/tomas/Downloads/AED-Schedule-filereader/AED-Schedule/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/tomas/Downloads/AED-Schedule-filereader/AED-Schedule/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/home/feld/Documents/Projetos/AED/cmake-build-debug"/>
+				<Option working_dir="C:/Users/tomas/Downloads/AED-Schedule-filereader/AED-Schedule/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/feld/Documents/Projetos/AED/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/feld/Documents/Projetos/AED/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/feld/Documents/Projetos/AED/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/feld/Documents/Projetos/AED/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/tomas/Downloads/AED-Schedule-filereader/AED-Schedule/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/tomas/Downloads/AED-Schedule-filereader/AED-Schedule/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/tomas/Downloads/AED-Schedule-filereader/AED-Schedule/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/tomas/Downloads/AED-Schedule-filereader/AED-Schedule/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/feld/Documents/Projetos/AED/src/Class_Hour.cpp">
+		<Unit filename="C:/Users/tomas/Downloads/AED-Schedule-filereader/AED-Schedule/src/Class_Hour.cpp">
 			<Option target="schedule"/>
 		</Unit>
-		<Unit filename="/home/feld/Documents/Projetos/AED/src/Class_Hour.h">
+		<Unit filename="C:/Users/tomas/Downloads/AED-Schedule-filereader/AED-Schedule/src/Class_Hour.h">
 			<Option target="schedule"/>
 		</Unit>
-		<Unit filename="/home/feld/Documents/Projetos/AED/src/Filereader.cpp">
+		<Unit filename="C:/Users/tomas/Downloads/AED-Schedule-filereader/AED-Schedule/src/Filereader.cpp">
 			<Option target="schedule"/>
 		</Unit>
-		<Unit filename="/home/feld/Documents/Projetos/AED/src/Filereader.h">
+		<Unit filename="C:/Users/tomas/Downloads/AED-Schedule-filereader/AED-Schedule/src/Filereader.h">
 			<Option target="schedule"/>
 		</Unit>
-		<Unit filename="/home/feld/Documents/Projetos/AED/src/Lecture.cpp">
+		<Unit filename="C:/Users/tomas/Downloads/AED-Schedule-filereader/AED-Schedule/src/Lecture.cpp">
 			<Option target="schedule"/>
 		</Unit>
-		<Unit filename="/home/feld/Documents/Projetos/AED/src/Lecture.h">
+		<Unit filename="C:/Users/tomas/Downloads/AED-Schedule-filereader/AED-Schedule/src/Lecture.h">
 			<Option target="schedule"/>
 		</Unit>
-		<Unit filename="/home/feld/Documents/Projetos/AED/src/Student.cpp">
+		<Unit filename="C:/Users/tomas/Downloads/AED-Schedule-filereader/AED-Schedule/src/Program_data.cpp">
 			<Option target="schedule"/>
 		</Unit>
-		<Unit filename="/home/feld/Documents/Projetos/AED/src/Student.h">
+		<Unit filename="C:/Users/tomas/Downloads/AED-Schedule-filereader/AED-Schedule/src/Program_data.h">
 			<Option target="schedule"/>
 		</Unit>
-		<Unit filename="/home/feld/Documents/Projetos/AED/src/Timetable.cpp">
+		<Unit filename="C:/Users/tomas/Downloads/AED-Schedule-filereader/AED-Schedule/src/Student.cpp">
 			<Option target="schedule"/>
 		</Unit>
-		<Unit filename="/home/feld/Documents/Projetos/AED/src/Timetable.h">
+		<Unit filename="C:/Users/tomas/Downloads/AED-Schedule-filereader/AED-Schedule/src/Student.h">
 			<Option target="schedule"/>
 		</Unit>
-		<Unit filename="/home/feld/Documents/Projetos/AED/src/Uc.cpp">
+		<Unit filename="C:/Users/tomas/Downloads/AED-Schedule-filereader/AED-Schedule/src/Timetable.cpp">
 			<Option target="schedule"/>
 		</Unit>
-		<Unit filename="/home/feld/Documents/Projetos/AED/src/Uc.h">
+		<Unit filename="C:/Users/tomas/Downloads/AED-Schedule-filereader/AED-Schedule/src/Timetable.h">
 			<Option target="schedule"/>
 		</Unit>
-		<Unit filename="/home/feld/Documents/Projetos/AED/src/main.cpp">
+		<Unit filename="C:/Users/tomas/Downloads/AED-Schedule-filereader/AED-Schedule/src/Uc.cpp">
 			<Option target="schedule"/>
 		</Unit>
-		<Unit filename="/home/feld/Documents/Projetos/AED/src/overloads.cpp">
+		<Unit filename="C:/Users/tomas/Downloads/AED-Schedule-filereader/AED-Schedule/src/Uc.h">
 			<Option target="schedule"/>
 		</Unit>
-		<Unit filename="/home/feld/Documents/Projetos/AED/src/overloads.h">
+		<Unit filename="C:/Users/tomas/Downloads/AED-Schedule-filereader/AED-Schedule/src/class_change.cpp">
 			<Option target="schedule"/>
 		</Unit>
-		<Unit filename="/home/feld/Documents/Projetos/AED/CMakeLists.txt">
+		<Unit filename="C:/Users/tomas/Downloads/AED-Schedule-filereader/AED-Schedule/src/class_change.h">
+			<Option target="schedule"/>
+		</Unit>
+		<Unit filename="C:/Users/tomas/Downloads/AED-Schedule-filereader/AED-Schedule/src/main.cpp">
+			<Option target="schedule"/>
+		</Unit>
+		<Unit filename="C:/Users/tomas/Downloads/AED-Schedule-filereader/AED-Schedule/src/overloads.cpp">
+			<Option target="schedule"/>
+		</Unit>
+		<Unit filename="C:/Users/tomas/Downloads/AED-Schedule-filereader/AED-Schedule/src/overloads.h">
+			<Option target="schedule"/>
+		</Unit>
+		<Unit filename="C:/Users/tomas/Downloads/AED-Schedule-filereader/AED-Schedule/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

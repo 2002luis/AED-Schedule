@@ -3,6 +3,7 @@
 #include <string>
 #include <iostream>
 #include <fstream>
+using namespace std;
 
 std::string Filereader::removeComma(std::string in){
     std::string out = "";
@@ -13,7 +14,26 @@ std::string Filereader::removeComma(std::string in){
     return(out);
 }
 
-map<std::string,UC> Filereader::readUcs() {
+
+void Filereader::readUcs(Program_data& data) {
+    string line;
+    std::ifstream ifs("../classes_per_uc.csv");
+    std::getline(ifs,line);
+    while(std::getline(ifs,line)){
+        line = removeComma(line);
+        std::istringstream iss(line);
+        std::string ucName, className;
+        iss >> ucName >> className;
+        auto uc = data.getUC(ucName);
+
+        if (uc == nullptr) {
+            uc = new UC(ucName);
+            data.addUC(uc);
+        }
+        uc->classes.insert(pair<std::string,Class_Hour*>(className,new Class_Hour(className, ucName)));
+    }
+}
+/*map<std::string,UC> Filereader::readUcs() {
     map<std::string,UC> out;
     std::string line;
     std::ifstream ifs("../classes_per_uc.csv");
@@ -24,12 +44,41 @@ map<std::string,UC> Filereader::readUcs() {
         std::string ucName, className;
         iss >> ucName >> className;
         if(out.find(ucName)==out.end()) out.insert(pair<std::string ,UC>(ucName,UC(ucName)));
-        out.find(ucName)->second.classes.insert(pair<std::string,Class_Hour*>(className,new Class_Hour(className,ucName)));
+        out.find(ucName)->second.classes.insert(pair<std::string,Class_Hour*>(className,new Class_Hour(className)));
     }
     return(out);
+}*/
+
+void Filereader::readClasses(Program_data &data) {
+    std::string line;
+    std::ifstream ifs("../classes.csv");
+    std::getline(ifs,line);
+    while(std::getline(ifs,line)) {
+        line = removeComma(line);
+        std::istringstream iss(line);
+        std::string classCode, ucCode, day, classType;
+        float startHour, duration;
+        iss >> classCode >> ucCode >> day >> startHour >> duration >> classType;
+        auto uc = data.getUC(ucCode);
+        if (uc == nullptr) continue;
+        auto it = uc->classes.find(classCode);
+
+        if (it == uc->classes.end()) continue;
+
+        Class_Hour* classHour = it->second;
+
+        if (classHour == nullptr) continue;
+
+        classHour->lectures.emplace_back(classCode,day,startHour,duration,classType, ucCode);
+
+
+    }
+
+
+
 }
 
-map<std::string, UC> Filereader::readClasses(map<std::string, UC> in) {
+/*void Filereader::readClasses(Program_data &data) {
     map<std::string,UC> out = in;
     std::string line;
     std::ifstream ifs("../classes.csv");
@@ -40,11 +89,44 @@ map<std::string, UC> Filereader::readClasses(map<std::string, UC> in) {
         std::string classCode, ucCode, day, classType;
         float startHour, duration;
         iss >> classCode >> ucCode >> day >> startHour >> duration >> classType;
-        if(out.find(ucCode)!=out.end() && out.find(ucCode)->second.classes.find(classCode)!=out.find(ucCode)->second.classes.end())
-            out.find(ucCode)->second.classes.find(classCode)->second->lectures.push_back(Lecture(classCode,day,startHour,duration,classType,ucCode));
+
+        if(out.find(ucCode)!=out.end() && out.find(ucCode)->second.classes.find(classCode)!=out.find(ucCode)->second.classes.end()){
+            UC found_uc = out.find(ucCode)->second;
+            Class_Hour* classHour = found_uc.classes.find(classCode)->second;
+            classHour->lectures.emplace_back(classCode,day,startHour,duration,classType);
+        }
     }
     return out;
+}*/
+
+
+
+void Filereader::readStudents(Program_data& data) {
+
+    std::string line;
+    std::ifstream ifs("../students_classes.csv");
+    std::getline(ifs, line);
+    while (std::getline(ifs, line)) {
+        line = removeComma(line);
+        std::istringstream iss(line);
+        unsigned long int num;
+        std::string name, ucCode, classCode;
+        iss >> num >> name >> ucCode >> classCode;
+        auto student = data.getStudent(num);
+
+        if (student == nullptr) {
+            student = new Student(name, num);
+            data.addStudent(student);
+        }
+        auto uc = data.getUC(ucCode);
+
+        if (uc == nullptr) continue;
+
+        student->classes.insert(pair<UC *, string>(uc, classCode));
+
+    }
 }
+/*
 
 map<unsigned long int,Student> Filereader::readStudents(map<std::string, unsigned long int> &students, map<std::string, UC> ucs) {
     map<unsigned long int, Student> out;
@@ -70,4 +152,4 @@ map<unsigned long int,Student> Filereader::readStudents(map<std::string, unsigne
         //STD BAD ALLOC
     }
     return out;
-}
+}*/

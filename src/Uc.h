@@ -11,11 +11,12 @@
 #include "Class_Hour.h"
 #include <map>
 
-class UC{
+class UC{ // passa a ter um vetor de turmas , class turmas
     public:
         UC(std::string code);
         std::map<std::string,Class_Hour*> classes;
         std::string code;
+        bool operator<(UC);
 };
 
 
