@@ -13,7 +13,7 @@
 struct UCcomparator {
 
     bool operator()(UC* uc1,UC* uc2) const{
-        return uc1->code < uc2->code;
+        return uc1->name < uc2->name;
     }
 
 };

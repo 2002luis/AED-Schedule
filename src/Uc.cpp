@@ -5,5 +5,18 @@
 #include "Uc.h"
 
 UC::UC(std::string code){
-    this->code = code;
+    this->name= code;
+}
+
+void UC::difference() {
+
+    for(auto i : classes){
+
+        unsigned char num =  i.second->students.size();
+
+        if(num < min) { this->min = num;}
+
+        if(num > max) {this->max = num;}
+    }
+
 }

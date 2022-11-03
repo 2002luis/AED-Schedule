@@ -2,29 +2,20 @@
 // Created by tomas on 28/10/2022.
 //
 
+#define maximo 25
+
 #include "class_change.h"
 #include "Class_Hour.h"
 #include "Timetable.h"
 
 #include<vector>
+#include <iostream>
 
-Student class_change::remove_Uc(Student student, UC uc) {
-
-    int size = student.classes.size();
-
-
-
-    /*for (int i = 0; i < size; i++){
-
-        if(student.classes[i]->name == uc.code){
-
-            delete(student.classes[i]); // heap memory
-        }
-    }*/
-    return Student("", 0);
+void class_change::remove_Uc(Student& student, UC* uc) {
+    student.classes.erase(student.classes.find(uc));
 }
 
-Student class_change::remove_Class(Student student, UC uc) {
+/*Student class_change::remove_Class(Student student, UC uc) {
 
     Student temp = student;
 
@@ -36,34 +27,82 @@ Student class_change::remove_Class(Student student, UC uc) {
 
             delete(temp.classes[i]); // heap memory
         }
-    }*/
+    }
 
     return Student("", 0);
 }
-/*
-bool class_change::can_switch(Student student, UC uc, Turma turma) {
+*/
+void class_change::add_Uc(Student& student, UC* uc,std::string turma){
 
-    Timetable horario = Timetable(remove_Class(student,uc));
+    student.classes.insert(std::pair<UC*,std::string>(uc,turma));
 
-    Timetable horario_uc = Timetable(*uc.classes.find("leic")->second);
+}
 
 
-        // e tamanho da propria turma
-    if ( turma.size() >= 25){
+bool class_change::can_switch(Student* student, UC* uc, std::string turma) {
 
-        return false;
+    Class_Hour turmaatual = *uc->classes.find(student->classes.find(uc)->second)->second;
+
+    Class_Hour turmafutura = *uc->classes.find(turma)->second;
+
+    Student temp = *student;
+
+    remove_Uc(temp,uc);
+
+    Timetable horario = Timetable(temp);
+
+    Timetable cadeira = Timetable(*uc->classes.find(turma)->second);
+
+
+
+
+    // e tamanho da propria turma
+    if ( turmaatual.students.size() >= maximo) return false;
+
+    int newmin = uc->min, newmax = uc->max;
+
+    uc->difference();
+
+    int diffturmaatual = turmaatual.students.size() -1;
+    int diffturmafutura = turmafutura.students.size() +1;
+
+    if(diffturmaatual < uc->min) {
+
+        if(uc->max - diffturmaatual > 4 || diffturmafutura - diffturmaatual > 4)
+
+            return false;
+
     }
-    if(horario.add(horario_uc)){
+    else newmin = diffturmaatual;
 
-        Timetable thorario = Timetable(remove_Uc(student,uc));
+    if(diffturmafutura > uc->max) {
 
-        thorario.add(horario_uc);
+        if(uc->min + 4 >= diffturmafutura > 4 || diffturmafutura - diffturmaatual > 4)
 
+            return false;
+
+    }
+    else newmax = diffturmafutura;
+
+    uc->min = newmin;
+    uc->max = newmax;
+
+    if(horario.add(cadeira)) {
+        remove_Uc(*student,uc);
+        add_Uc(*student,uc,turma);
+
+        Timetable horario = Timetable(*student);
+        horario.add(cadeira);
         return true;
     }
 
+
+
+
+
+
     return false;
-}*/
+}
 
 
 

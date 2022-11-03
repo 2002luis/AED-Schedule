@@ -1,7 +1,3 @@
-//
-// Created by feld on 20-10-2022.
-//
-
 #ifndef AED_CLASS_HOUR_H
 #define AED_CLASS_HOUR_H
 
@@ -11,6 +7,8 @@
 
 class Class_Hour {
 public:
+
+    std::vector<unsigned long int> students;
     std::vector<Lecture> lectures;
     std::string ucName, name;
     Class_Hour(std::string name, std::string ucName);
