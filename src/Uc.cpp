@@ -8,7 +8,7 @@ UC::UC(std::string code){
     this->name= code;
 }
 
-void UC::difference() {
+int UC::difference() {
 
     for(auto i : classes){
 
@@ -18,5 +18,7 @@ void UC::difference() {
 
         if(num > max) {this->max = num;}
     }
+
+    return(max-min);
 
 }

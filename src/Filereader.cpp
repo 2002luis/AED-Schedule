@@ -6,11 +6,9 @@
 using namespace std;
 
 std::string Filereader::removeComma(std::string in){
-    std::string out = "";
-    for(unsigned long int i = 0; i < in.size(); i++){
-        if(in[i]!=',') out+=in[i];
-        else out+=' ';
-    }
+    std::string out = in;
+    while(out.find(' ')!=std::string::npos) out[out.find(' ')]='_';
+    while(out.find(',')!=std::string::npos) out[out.find(',')]=' ';
     return(out);
 }
 
@@ -112,8 +110,9 @@ void Filereader::readStudents(Program_data& data) {
         unsigned long int num;
         std::string name, ucCode, classCode;
         iss >> num >> name >> ucCode >> classCode;
+        if(name.find('_')!=std::string::npos) name[name.find('_')] = ' ';
+        //std::cout << name << '\t';
         auto student = data.getStudent(num);
-
         if (student == nullptr) {
             student = new Student(name, num);
             data.addStudent(student);

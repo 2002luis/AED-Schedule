@@ -17,7 +17,7 @@ public:
     std::string name;
     std::map<std::string,Class_Hour*> classes;
     bool operator<(UC);
-    void difference();
+    int difference();
     unsigned char max;
     unsigned char min;
 

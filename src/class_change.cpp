@@ -11,21 +11,50 @@
 #include<vector>
 #include <iostream>
 
-void class_change::remove_Uc(Student& student, UC* uc) {
+bool class_change::check_size(UC *uc, std::string class1, bool add) {
+    if(add) return(class_change::check_size(uc,"",class1));
+    return(class_change::check_size(uc,class1,""));
+}
 
-    student.classes.erase(student.classes.find(uc));
+bool class_change::check_size(UC *uc, std::string class1, std::string class2) {
+
+    UC ucNova = *uc;
+
+    if(class1!="") ucNova.classes.find(class1)->second->students.erase(ucNova.classes.find(class1)->second->students.begin(),ucNova.classes.find(class1)->second->students.begin()+1);
+    if(class2!="") ucNova.classes.find(class2)->second->students.push_back(21);
+
+    return(ucNova.difference()<=4);
+}
+
+bool class_change::remove_Uc(Student& student, UC* uc) {
+
+    if(!class_change::check_size(uc,student.classes.find(uc)->second,false)) return(false);
 
     Class_Hour* turmaatual = uc->classes.find(student.classes.find(uc)->second)->second;
 
-    for(int a = 0; a < turmaatual->students.size(); a++ ){
-
-        if(turmaatual->students[a] == student.num) turmaatual->students.erase(turmaatual->students.begin()+a,turmaatual->students.begin()+a+1);
-
+    if(student.classes.find(uc)!=student.classes.end()) student.classes.erase(student.classes.find(uc));
+    else{
+        std::cout << "Student not in this UC" << std::endl;
+        return(false);
     }
 
+
+
+    for(unsigned long int a = 0; a < turmaatual->students.size(); a++ ){
+
+        if(turmaatual->students[a] == student.num) {
+            turmaatual->students.erase(turmaatual->students.begin() + a, turmaatual->students.begin() + a + 1);
+            break;
+        }
+    }
+
+    return(true);
 }
 
 bool class_change::add_Uc(Student* student, UC* uc,std::string turma){
+
+    if(student->classes.find(uc)!=student->classes.end()) return(false);
+    if(!class_change::check_size(uc,turma,true)) return(false);
 
     Timetable cur(*student), ntable(*uc->classes.find(turma)->second);
     if(!cur.add(ntable)) return(false);
@@ -47,7 +76,13 @@ void class_change::remove_Class(Student* student) {
 //}
 bool class_change::can_switch(Student *student, UC *uc, std::string turma) {
 
-    Class_Hour turmaatual = *uc->classes.find(student->classes.find(uc)->second)->second;
+    Class_Hour turmaatual("lixo","lixo"); //  = *uc->classes.find(student->classes.find(uc)->second)->second
+    try{
+        turmaatual = *uc->classes.find(student->classes.find(uc)->second)->second;
+    }
+    catch(...){
+
+    }
 
     Class_Hour turmafutura = *uc->classes.find(turma)->second;
 
@@ -55,7 +90,7 @@ bool class_change::can_switch(Student *student, UC *uc, std::string turma) {
 
     Timetable horario = Timetable(temp);
 
-    remove_Uc(temp,uc);
+    if(temp.classes.find(uc)!=temp.classes.end()) remove_Uc(temp,uc);
 
     Timetable cadeira = Timetable(*uc->classes.find(turma)->second);
     // e tamanho da propria turma
