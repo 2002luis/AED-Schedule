@@ -42,7 +42,7 @@ std::ostream& operator<<(std::ostream& os, const Timetable& a)
     horas.push_back("20:00");
     horas.push_back("20:30");
 
-    os << "\t2a feira\t3a feira\t4a feira\t5a feira\t6a feira\t" << std::endl;
+    os << "\t 2a feira\t 3a feira\t 4a feira\t 5a feira\t 6a feira\t" << std::endl;
     /*for(int i = 0; i < 5; i++){
         if(a.horario[i][0]!="\t") os << "--------";
         else os << '\t';

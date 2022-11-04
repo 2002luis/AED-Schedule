@@ -11,11 +11,14 @@
 #include "overloads.h"
 #include "Filereader.h"
 #include "Program_data.h"
+#include "request.h"
 #include <iostream>
 #include <vector>
 #include <set>
 #include <map>
 #include <stdlib.h>
+#include <queue>
+#include <list>
 #include <algorithm>
 
 bool sortByUCAmount(Student* student1, Student* student2){
@@ -29,13 +32,13 @@ bool sortByName(Student* student1, Student* student2){
 void menu2(Program_data sus){
     unsigned long int num;
     std::string name;
-    int n;
-    std::cout << "Student number (1) or name (2)? ";
-    std::cin >> n;
-    if(n==1) std::cin >> num;
-    else {
-        std::cin >> name;
-        num = sus.studentNames.find(name)->second;
+    std::cout << "Student number or name? ";
+    std::cin >> name;
+    try{
+        num=stoi(name);
+    }
+    catch(invalid_argument e){
+        num=sus.studentNames.find(name)->second;
     }
     Student* student = sus.getStudent(num);
     if(student!= nullptr) std::cout << std::endl << Timetable(*student);
@@ -113,66 +116,31 @@ void menu4(Program_data sus){
         std::cout << i->num << ' ' << i->name << ' ' << i->classes.size() << std::endl;
     }
 }
-void menu5(Program_data& sus){
-
-    std::string in = "";
-
-
-    unsigned long int num;
-    string name;
-    cout << "Student number (1) or name (2)? ";
-    cin >> num;
-    if(num==1) cin >> num;
-    else {
-        cin >> name;
-        num = sus.studentNames.find(name)->second;
-    }
-    cout << "UC Name?";
-    std::string UCName = "";
-    cin >> UCName;
-    class_change::remove_Uc(*sus.getStudent(num),sus.getUC(UCName));
+void menu5(Program_data& sus, request in){
+    int num = in.num;
+    UC* uc = in.uc;
+    class_change::remove_Uc(*sus.getStudent(num),uc);
 }
-void menu6(Program_data& sus){
-    unsigned long int num;
-    string name;
-    cout << "Student number (1) or name (2)? ";
-    cin >> num;
-    if(num==1) cin >> num;
+void menu6(Program_data& sus, request in, list<request>& failure){
+    int num = in.num;
+    UC* uc = in.uc;
+    std::string className = in.destination;
+    if(class_change::add_Uc(sus.getStudent(num),uc,className)) cout << "Student added to class successfully. ";
     else {
-        cin >> name;
-        num = sus.studentNames.find(name)->second;
+        failure.push_back(in);
+        std::cout << "Couldn't add student to class. ";
     }
-    cout << "UC Name?";
-    std::string UCName = "";
-    std::cin >> UCName;
-    std::cout << "Which class? ";
-    std::string className = "";
-    cin >> className;
-    if(class_change::add_Uc(sus.getStudent(num),sus.getUC(UCName),className)) cout << "Student added to class successfully. ";
-    else cout << "Couldn't add student to class. ";
 }
-void menu7(Program_data& sus){
-    unsigned long int num;
-    string name;
-    cout << "Student number (1) or name (2)? ";
-    cin >> num;
-    if(num==1) cin >> num;
+void menu7(Program_data& sus, request in, list<request>& failure){
+    int num = in.num;
+    UC* uc = in.uc;
+    std::string className = in.destination;
+    std::string oldClassName = sus.getStudent(num)->classes.find(uc)->second;
+    Timetable oldClass(*uc->classes.find(className)->second);
+    class_change::remove_Uc(*sus.getStudent(num),uc);
+    if(class_change::add_Uc(sus.getStudent(num),uc,className)) cout << "Student added to class successfully. ";
     else {
-        cin >> name;
-        num = sus.studentNames.find(name)->second;
-    }
-    cout << "UC Name?";
-    std::string UCName = "";
-    std::cin >> UCName;
-    std::cout << "Which class? ";
-    std::string className = "";
-    cin >> className;
-    std::string oldClassName = sus.getStudent(num)->classes.find(sus.getUC(UCName))->second;
-    Timetable oldClass(*sus.getUC(UCName)->classes.find(className)->second);
-    class_change::remove_Uc(*sus.getStudent(num),sus.getUC(UCName));
-    if(class_change::add_Uc(sus.getStudent(num),sus.getUC(UCName),className)) cout << "Student added to class successfully. ";
-    else {
-
+        failure.push_back(in);
         cout << "Couldn't add student to class. ";
     }
 }
@@ -184,8 +152,9 @@ int main(){
     Filereader::readUcs(sus);
     Filereader::readClasses(sus);
     Filereader::readStudents(sus);
-
-    cout << Timetable(*sus.getStudent(202071557));
+    std::queue<request> requests;
+    std::list<request> failedRequests;
+    //cout << Timetable(*sus.getStudent(202071557));
     //READ FILES
 
     bool exit = false;
@@ -201,6 +170,8 @@ int main(){
         // 5 remover aluno de turma/UC
         // 6 adicionar aluno a turma/UC
         // 7 alterar turma
+        // 8 fazer as coisas na fila
+        // 9 ver lista de coisas falhadas
         if(input=="1"){}
         else if(input=="2"){
             menu2(sus);
@@ -212,16 +183,91 @@ int main(){
             menu4(sus);
         }
         else if(input=="5"){
-            menu5(sus);
+            std::string name = "";
+            std::cout << "Student number or name? ";
+            unsigned long int num;
+            std::cin >> name;
+            try{
+                num=stoi(name);
+            }
+            catch(invalid_argument e){
+                num=sus.studentNames.find(name)->second;
+            }
+            cout << "UC Name?";
+            std::string UCName = "";
+            cin >> UCName;
+            request newRequest;
+            newRequest.num = num;
+            newRequest.operation = 5;
+            newRequest.uc = sus.getUC(UCName);
+            newRequest.destination = "";
+            requests.push(newRequest);
         }
         else if(input=="6"){
-            menu6(sus);
+            std::string name = "";
+            std::cout << "Student number or name? ";
+            unsigned long int num;
+            std::cin >> name;
+            try{
+                num=stoi(name);
+            }
+            catch(invalid_argument e){
+                num=sus.studentNames.find(name)->second;
+            }
+            cout << "UC Name?";
+            std::string UCName = "";
+            std::cin >> UCName;
+            std::cout << "Which class? ";
+            std::string className = "";
+            cin >> className;
+            request newRequest;
+            newRequest.num=num;
+            newRequest.operation=6;
+            newRequest.uc=sus.getUC(UCName);
+            newRequest.destination=className;
+            requests.push(newRequest);
         }
         else if(input=="7"){
-            menu7(sus);
+            std::string name = "";
+            std::cout << "Student number or name? ";
+            unsigned long int num;
+            std::cin >> name;
+            try{
+                num=stoi(name);
+            }
+            catch(invalid_argument e){
+                num=sus.studentNames.find(name)->second;
+            }
+            cout << "UC Name?";
+            std::string UCName = "";
+            std::cin >> UCName;
+            std::cout << "Which class? ";
+            std::string className = "";
+            cin >> className;
+            request newRequest;
+            newRequest.num = num;
+            newRequest.operation = 7;
+            newRequest.uc = sus.getUC(UCName);
+            newRequest.destination = className;
+            requests.push(newRequest);
+        }
+        else if(input=="8"){
+            while(requests.size()>0){
+                request cur = requests.front();
+                requests.pop();
+                if(cur.operation==5) menu5(sus,cur);
+                else if(cur.operation==6) menu6(sus,cur,failedRequests);
+                else if(cur.operation==7) menu7(sus,cur,failedRequests);
+                std::cout << std::endl << "Done ";
+            }
+        }
+        else if(input=="9"){
+            for(auto i : failedRequests){
+                cout << "Couldn't add student " << i.num << "to class " << i.destination << "of UC " << i.uc->name << std::endl;
+            }
         }
         else exit = true;
-        getchar();
+        getchar(); //CATCH \n
     }
 
     /*
