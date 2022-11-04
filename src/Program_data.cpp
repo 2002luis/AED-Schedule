@@ -12,6 +12,7 @@ void Program_data::addUC(UC *uc) {
 
 void Program_data::addStudent(Student *student) {
     this->students.insert(student);
+    this->studentNames.insert({student->name,student->num});
 }
 
 UC *Program_data::getUC(std::string code) {
@@ -21,9 +22,13 @@ UC *Program_data::getUC(std::string code) {
     return nullptr;
 }
 
-Student *Program_data::getStudent(unsigned long num) {
+Student *Program_data::getStudent(unsigned long int num) {
     auto* copy_student = new Student("", num);
     auto it = this->students.find(copy_student);
     if (it != this->students.end()) return *it;
     return nullptr;
+}
+
+Student *Program_data::getStudent(std::string name){
+    return this->getStudent(this->studentNames.find(name)->second);
 }

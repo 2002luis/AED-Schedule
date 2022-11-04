@@ -13,7 +13,7 @@
 
 std::ostream& operator<<(std::ostream& os, const Timetable& a)
 {
-
+    os << std::endl;
     std::vector<std::string> horas;
     horas.push_back("08:00");
     horas.push_back("08:30");

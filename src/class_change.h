@@ -11,9 +11,9 @@
 class class_change {
 public:
     static void remove_Uc(Student& , UC*);
-    void remove_Class(Student&, UC*);
-    void add_class();
-    static void add_Uc(Student& student, UC* uc,std::string turma);
+    static void remove_Class(Student*);
+    static void add_class();
+    static bool add_Uc(Student* student, UC* uc,std::string turma);
     static bool can_switch(Student*,UC*, std::string);
 
 };

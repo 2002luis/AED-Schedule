@@ -12,34 +12,40 @@
 #include <iostream>
 
 void class_change::remove_Uc(Student& student, UC* uc) {
+
     student.classes.erase(student.classes.find(uc));
-}
 
-/*Student class_change::remove_Class(Student student, UC uc) {
+    Class_Hour* turmaatual = uc->classes.find(student.classes.find(uc)->second)->second;
 
-    Student temp = student;
+    for(int a = 0; a < turmaatual->students.size(); a++ ){
 
-    int size = temp.classes.size();
+        if(turmaatual->students[a] == student.num) turmaatual->students.erase(turmaatual->students.begin()+a,turmaatual->students.begin()+a+1);
 
-    /*for (int i = 0; i < size; i++){
-
-        if(temp.classes[i]->name == uc.code){
-
-            delete(temp.classes[i]); // heap memory
-        }
     }
 
-    return Student("", 0);
-}
-*/
-void class_change::add_Uc(Student& student, UC* uc,std::string turma){
-
-    student.classes.insert(std::pair<UC*,std::string>(uc,turma));
-
 }
 
+bool class_change::add_Uc(Student* student, UC* uc,std::string turma){
 
-bool class_change::can_switch(Student* student, UC* uc, std::string turma) {
+    Timetable cur(*student), ntable(*uc->classes.find(turma)->second);
+    if(!cur.add(ntable)) return(false);
+    student->classes.insert(std::pair<UC*,std::string>(uc,turma));
+
+    Class_Hour * turmaatual = uc->classes.find(student->classes.find(uc)->second)->second;
+
+    turmaatual->students.push_back(student->num);
+
+    return(true);
+}
+void class_change::remove_Class(Student* student) {
+    std::map<UC*, std::string>::iterator it = student->classes.begin();
+    for( it; it != student->classes.end(); it++ ){
+        remove_Uc(*student,it->first);
+    }
+}
+//void class_change::add_Class(Student* student,std::string turma, Program_data a){
+//}
+bool class_change::can_switch(Student *student, UC *uc, std::string turma) {
 
     Class_Hour turmaatual = *uc->classes.find(student->classes.find(uc)->second)->second;
 
@@ -47,63 +53,35 @@ bool class_change::can_switch(Student* student, UC* uc, std::string turma) {
 
     Student temp = *student;
 
-    remove_Uc(temp,uc);
-
     Timetable horario = Timetable(temp);
 
+    remove_Uc(temp,uc);
+
     Timetable cadeira = Timetable(*uc->classes.find(turma)->second);
-
-
-
-
     // e tamanho da propria turma
     if ( turmaatual.students.size() >= maximo) return false;
-
     int newmin = uc->min, newmax = uc->max;
-
     uc->difference();
-
     int diffturmaatual = turmaatual.students.size() -1;
     int diffturmafutura = turmafutura.students.size() +1;
-
     if(diffturmaatual < uc->min) {
-
         if(uc->max - diffturmaatual > 4 || diffturmafutura - diffturmaatual > 4)
-
-            return false;
-
-    }
+            return false; }
     else newmin = diffturmaatual;
-
     if(diffturmafutura > uc->max) {
-
         if(uc->min + 4 >= diffturmafutura > 4 || diffturmafutura - diffturmaatual > 4)
-
-            return false;
-
-    }
+            return false; }
     else newmax = diffturmafutura;
-
     uc->min = newmin;
     uc->max = newmax;
-
     if(horario.add(cadeira)) {
         remove_Uc(*student,uc);
-        add_Uc(*student,uc,turma);
-
+        add_Uc(student,uc,turma);
         Timetable horario = Timetable(*student);
         horario.add(cadeira);
-        return true;
-    }
-
-
-
-
-
-
+        return true;}
     return false;
 }
-
 
 
 

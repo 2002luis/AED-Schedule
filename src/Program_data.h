@@ -27,16 +27,17 @@ struct Studentcomparator {
 
 class Program_data {
 
-    private:
+    public:
         std::set<UC*,UCcomparator> UCs;
         std::set<Student*,Studentcomparator> students;
+        std::map<std::string, unsigned long int> studentNames;
 
-    public:
         void addUC(UC* uc);
         void addStudent(Student* student);
 
         UC* getUC(std::string code);
         Student* getStudent(unsigned long int num);
+        Student* getStudent(std::string name);
 };
 
 
