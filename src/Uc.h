@@ -20,7 +20,6 @@ public:
     int difference();
     unsigned char max;
     unsigned char min;
-
 };
 
 

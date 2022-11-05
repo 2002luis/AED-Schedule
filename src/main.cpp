@@ -16,7 +16,6 @@
 #include <vector>
 #include <set>
 #include <map>
-#include <stdlib.h>
 #include <queue>
 #include <list>
 #include <algorithm>
@@ -28,24 +27,61 @@ bool sortByUCAmount(Student* student1, Student* student2){
 bool sortByName(Student* student1, Student* student2){
     return(student1->name<student2->name);
 }
-
-void menu2(Program_data sus){
-    unsigned long int num;
-    std::string name;
-    std::cout << "Student number or name? ";
-    getline(cin,name);
-    try{
-        num=stoi(name);
-    }
-    catch(invalid_argument e){
-        num=sus.studentNames.find(name)->second;
-    }
-    Student* student = sus.getStudent(num);
-    if(student!= nullptr) std::cout << std::endl << Timetable(*student);
-    else std::cout << "Student not found!" << std::endl;
-}
-void menu3(Program_data sus){
+void menu1(Program_data sus){
     int out = 0;
+    cout << "Class (1), Year (2) or UC(3)?";
+    std::string num = ""; //1 Turma 2 Ano 3 UC
+    while(num!="1" && num!="2" && num!="3") cin >> num;
+    if(num=="1"){
+        std::string ucName, className;
+        std::cout << "UC Name?";
+        std::cin >> ucName;
+        UC* uc = sus.getUC(ucName);
+        if(uc == nullptr) {
+            std::cout << "UC does not exist." << std::endl;
+            return;
+        }
+        std::cout << "Class Name?";
+        std::cin >> className;
+        std::cout << std::endl;
+        Class_Hour turma("lixo","lixo");
+        if(uc->classes.end()!=uc->classes.find(className)) turma = *uc->classes.find(className)->second;
+        else return;
+        for(unsigned long int i = 0; i < turma.students.size(); i++){
+            out++;
+        }
+    }
+    else if(num=="2"){
+        int n;
+        while (true) {
+            std::cout << "Student year:";
+            std::cin >> n;
+            std::cout << std::endl;
+            if (std::cin.fail()) {
+                std::cin.clear();
+                std::cin.ignore();
+                std::cout << "Not a number! " << endl;
+            } else break;
+        }
+        for(auto i : sus.students) if(i->num/100000 == n) {
+                out++;
+            }
+    }
+    else{
+        std::cout << "UC Name?";
+        std::cin >> num;
+        UC* uc=sus.getUC(num);
+        if(uc == nullptr){
+            std::cout << "UC does not exist." << std::endl;
+            return;
+        }
+        for(auto i : sus.students){
+            out++;
+        }
+    }
+    std::cout << "Total: " << out << std::endl;
+}
+void menu2(Program_data sus){
     cout << "Class (1), Year (2) or UC(3)?";
     std::string num = ""; //1 Turma 2 Ano 3 UC
     while(num!="1" && num!="2" && num!="3") cin >> num;
@@ -67,7 +103,6 @@ void menu3(Program_data sus){
         for(unsigned long int i = 0; i < turma.students.size(); i++){
             Student student = *sus.getStudent(turma.students[i]);
             std::cout << student.name << " " << student.num << std::endl;
-            out++;
         }
     }
     else if(num=="2"){
@@ -83,9 +118,8 @@ void menu3(Program_data sus){
             } else break;
         }
         for(auto i : sus.students) if(i->num/100000 == n) {
-            std::cout << i->name << " " << i->num << std::endl;
-            out++;
-        }
+                std::cout << i->name << " " << i->num << std::endl;
+            }
     }
     else{
         std::cout << "UC Name?";
@@ -97,10 +131,23 @@ void menu3(Program_data sus){
         }
         for(auto i : sus.students){
             if(i->classes.find(uc)!=i->classes.end()) cout << i->name << " " << i->num << std::endl;
-            out++;
         }
     }
-    std::cout << std::endl << "Total: " << out << std::endl;
+}
+void menu3(Program_data sus){
+    unsigned long int num;
+    std::string name;
+    std::cout << "Student number or name? ";
+    getline(cin,name);
+    try{
+        num=stoi(name);
+    }
+    catch(invalid_argument e){
+        num=sus.studentNames.find(name)->second;
+    }
+    Student* student = sus.getStudent(num);
+    if(student!= nullptr) std::cout << std::endl << Timetable(*student);
+    else std::cout << "Student not found!" << std::endl;
 }
 void menu4(Program_data sus){
     int n;
@@ -182,7 +229,7 @@ int main(){
     bool exit = false;
     while(!exit){
 
-        std::cout << "1 por fazer\n2 Student Timetable\n3 List of Students in Class/Year/UC: \n4 Students with more than X UCs\n5 Remove Student from Class/UC\n" <<
+        std::cout << "1 Number of Students in Class/Year/UC\n2 List of Students in Class/Year/UC\n3 Student Timetable: \n4 Students with more than X UCs\n5 Remove Student from Class/UC\n" <<
         "6 Add Student to Class/UC\n7 Change Student Class\n8 Execute queued operations (5,6 and 7)\n9 List of failed operations" << std::endl;
         std::string input;
         std::cin >> input;
@@ -196,7 +243,9 @@ int main(){
         // 7 alterar turma
         // 8 fazer as coisas na fila
         // 9 ver lista de coisas falhadas
-        if(input=="1"){}
+        if(input=="1"){
+            menu1(sus);
+        }
         else if(input=="2"){
             menu2(sus);
         }
@@ -333,8 +382,7 @@ int main(){
 
     cout << endl << Timetable(*sus.getStudent(202071557));
     */
-
-     /*
+    /*
     int alunosUcTurma(string turma, string uc, map<unsigned long int, Student> students){
         int size = 0;
         std::map<unsigned long int, Student>::iterator it;
