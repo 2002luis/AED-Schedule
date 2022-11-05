@@ -10,7 +10,6 @@
 
 //A FUNCAO DE PRINT CURSED
 
-
 std::ostream& operator<<(std::ostream& os, const Timetable& a)
 {
     os << std::endl;

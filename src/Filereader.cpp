@@ -122,6 +122,7 @@ void Filereader::readStudents(Program_data& data) {
         if (uc == nullptr) continue;
 
         student->classes.insert(pair<UC *, string>(uc, classCode));
+        data.getUC(ucCode)->classes.find(classCode)->second->students.push_back(num);
 
     }
 }

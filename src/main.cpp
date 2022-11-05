@@ -46,43 +46,61 @@ void menu2(Program_data sus){
 }
 void menu3(Program_data sus){
     int out = 0;
-    string num = ""; //1 Turma 2 Ano 3 UC
+    cout << "Class (1), Year (2) or UC(3)?";
+    std::string num = ""; //1 Turma 2 Ano 3 UC
     while(num!="1" && num!="2" && num!="3") cin >> num;
     if(num=="1"){
-        string ucName;
-        cout << "UC Name? ";
-        cin >> ucName;
-        cout << "Class Name? ";
-        cin >> num;
-        UC uc = *sus.getUC(ucName);
-        Class_Hour turma = *uc.classes.find(num)->second;
-        out = turma.students.size();
+        std::string ucName, className;
+        std::cout << "UC Name?";
+        std::cin >> ucName;
+        UC* uc = sus.getUC(ucName);
+        if(uc == nullptr) {
+            std::cout << "UC does not exist." << std::endl;
+            return;
+        }
+        std::cout << "Class Name?";
+        std::cin >> className;
+        std::cout << std::endl;
+        Class_Hour turma("lixo","lixo");
+        if(uc->classes.end()!=uc->classes.find(className)) turma = *uc->classes.find(className)->second;
+        else return;
+        for(unsigned long int i = 0; i < turma.students.size(); i++){
+            Student student = *sus.getStudent(turma.students[i]);
+            std::cout << student.name << " " << student.num << std::endl;
+            out++;
+        }
     }
-    if(num=="2"){
+    else if(num=="2"){
         int n;
-
         while (true) {
-            std::cout << "Student year: ";
+            std::cout << "Student year:";
             std::cin >> n;
+            std::cout << std::endl;
             if (std::cin.fail()) {
                 std::cin.clear();
                 std::cin.ignore();
-                cout << "Not a number! " << endl;
+                std::cout << "Not a number! " << endl;
             } else break;
         }
-        for(auto i : sus.students) if(i->num/100000 == n) out++;
-
-
-    }
-    else{
-        cin >> num;
-        UC uc=*sus.getUC(num);
-        cin >> num;
-        for(auto i : sus.students){
-            if(i->classes.find(&uc)!=i->classes.end()) out++;
+        for(auto i : sus.students) if(i->num/100000 == n) {
+            std::cout << i->name << " " << i->num << std::endl;
+            out++;
         }
     }
-    std::cout << out;
+    else{
+        std::cout << "UC Name?";
+        std::cin >> num;
+        UC* uc=sus.getUC(num);
+        if(uc == nullptr){
+            std::cout << "UC does not exist." << std::endl;
+            return;
+        }
+        for(auto i : sus.students){
+            if(i->classes.find(uc)!=i->classes.end()) cout << i->name << " " << i->num << std::endl;
+            out++;
+        }
+    }
+    std::cout << std::endl << "Total: " << out << std::endl;
 }
 void menu4(Program_data sus){
     int n;
@@ -119,7 +137,7 @@ void menu4(Program_data sus){
 void menu5(Program_data& sus, request in, list<request>& failure){
     int num = in.num;
     UC* uc = in.uc;
-    if(class_change::remove_Uc(*sus.getStudent(num),uc)) cout << "Student removed from class successfully.";
+    if(class_change::remove_Uc(sus.getStudent(num),uc)) cout << "Student removed from class successfully.";
     else{
         failure.push_back(in);
         cout << "Can't remove student from class.";
@@ -139,10 +157,7 @@ void menu7(Program_data& sus, request in, list<request>& failure){
     int num = in.num;
     UC* uc = in.uc;
     std::string className = in.destination;
-    std::string oldClassName = sus.getStudent(num)->classes.find(uc)->second;
-    Timetable oldClass(*uc->classes.find(className)->second);
-    class_change::remove_Uc(*sus.getStudent(num),uc);
-    if(class_change::add_Uc(sus.getStudent(num),uc,className)) cout << "Student added to class successfully. ";
+    if(class_change::can_switch(sus.getStudent(num),uc,className)) cout << "Student added to class successfully. ";
     else {
         failure.push_back(in);
         cout << "Couldn't add student to class. ";
@@ -160,6 +175,9 @@ int main(){
     std::list<request> failedRequests;
     //cout << Timetable(*sus.getStudent(202071557));
     //READ FILES
+
+    //cout << sus.getUC("L.EIC001")->classes.find("1LEIC02")->second->students[0] << endl;
+
 
     bool exit = false;
     while(!exit){

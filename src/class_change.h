@@ -10,7 +10,7 @@
 
 class class_change {
 public:
-    static bool remove_Uc(Student& , UC*);
+    static bool remove_Uc(Student* , UC*);
     static void remove_Class(Student*);
     static void add_class();
     static bool add_Uc(Student* student, UC* uc,std::string turma);

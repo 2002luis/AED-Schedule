@@ -19,20 +19,19 @@ bool class_change::check_size(UC *uc, std::string class1, bool add) {
 bool class_change::check_size(UC *uc, std::string class1, std::string class2) {
 
     UC ucNova = *uc;
-
     if(class1!="") ucNova.classes.find(class1)->second->students.erase(ucNova.classes.find(class1)->second->students.begin(),ucNova.classes.find(class1)->second->students.begin()+1);
     if(class2!="") ucNova.classes.find(class2)->second->students.push_back(21);
 
     return(ucNova.difference()<=4);
 }
 
-bool class_change::remove_Uc(Student& student, UC* uc) {
+bool class_change::remove_Uc(Student* student, UC* uc) {
 
-    if(!class_change::check_size(uc,student.classes.find(uc)->second,false)) return(false);
+    if(!class_change::check_size(uc,student->classes.find(uc)->second,false)) return(false);
 
-    Class_Hour* turmaatual = uc->classes.find(student.classes.find(uc)->second)->second;
+    Class_Hour* turmaatual = uc->classes.find(student->classes.find(uc)->second)->second;
 
-    if(student.classes.find(uc)!=student.classes.end()) student.classes.erase(student.classes.find(uc));
+    if(student->classes.find(uc)!=student->classes.end()) student->classes.erase(student->classes.find(uc));
     else{
         std::cout << "Student not in this UC" << std::endl;
         return(false);
@@ -42,7 +41,7 @@ bool class_change::remove_Uc(Student& student, UC* uc) {
 
     for(unsigned long int a = 0; a < turmaatual->students.size(); a++ ){
 
-        if(turmaatual->students[a] == student.num) {
+        if(turmaatual->students[a] == student->num) {
             turmaatual->students.erase(turmaatual->students.begin() + a, turmaatual->students.begin() + a + 1);
             break;
         }
@@ -53,7 +52,10 @@ bool class_change::remove_Uc(Student& student, UC* uc) {
 
 bool class_change::add_Uc(Student* student, UC* uc,std::string turma){
 
-    if(student->classes.find(uc)!=student->classes.end()) return(false);
+    if(student->classes.find(uc)!=student->classes.end()) {
+        std::cout << "Student already in a class in this UC.";
+        return(false);
+    }
     if(!class_change::check_size(uc,turma,true)) return(false);
 
     Timetable cur(*student), ntable(*uc->classes.find(turma)->second);
@@ -69,21 +71,17 @@ bool class_change::add_Uc(Student* student, UC* uc,std::string turma){
 void class_change::remove_Class(Student* student) {
     std::map<UC*, std::string>::iterator it = student->classes.begin();
     for( it; it != student->classes.end(); it++ ){
-        remove_Uc(*student,it->first);
+        remove_Uc(student,it->first);
     }
 }
 //void class_change::add_Class(Student* student,std::string turma, Program_data a){
 //}
 bool class_change::can_switch(Student *student, UC *uc, std::string turma) {
 
-    Class_Hour turmaatual("lixo","lixo"); //  = *uc->classes.find(student->classes.find(uc)->second)->second
-    try{
-        turmaatual = *uc->classes.find(student->classes.find(uc)->second)->second;
-    }
-    catch(...){
-
-    }
-
+    if(!class_change::check_size(uc,turma,student->classes.find(uc)->second)) return(false);
+    class_change::remove_Uc(student,uc);
+    class_change::add_Uc(student,uc,turma);
+    /*
     Class_Hour turmafutura = *uc->classes.find(turma)->second;
 
     Student temp = *student;
@@ -116,6 +114,8 @@ bool class_change::can_switch(Student *student, UC *uc, std::string turma) {
         horario.add(cadeira);
         return true;}
     return false;
+     */
+    return(true);
 }
 
 
