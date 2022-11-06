@@ -28,7 +28,7 @@ bool class_change::check_size(UC *uc, std::string class1, std::string class2) {
         else if(temp<min) min=temp;
     }
 
-    return((max-min)<=4);
+    return((max-min)<=4 && max<=maximo);
 }
 
 bool class_change::remove_Uc(Student* student, UC* uc) {

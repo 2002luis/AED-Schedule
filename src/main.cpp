@@ -211,7 +211,16 @@ void menu7(Program_data& sus, request in, list<request>& failure){
     }
 }
 
-
+void menu10(Program_data& sus){
+    remove("../students_classes.csv");
+    std::ofstream ofs("../students_classes.csv");
+    ofs << "StudentCode,StudentName,UcCode,ClassCode";
+    for(auto i : sus.students){
+        for(auto j : i->classes){
+            ofs << std::endl << i->num << ',' << i->name << ',' << j.first->name << ',' << j.second;
+        }
+    }
+}
 int main(){
 
     Program_data sus = Program_data();
@@ -226,7 +235,7 @@ int main(){
     while(!exit){
 
         std::cout << "1 Number of Students in Class/Year/UC\n2 List of Students in Class/Year/UC\n3 Student Timetable \n4 Students with more than X UCs\n5 Remove Student from Class/UC\n" <<
-        "6 Add Student to Class/UC\n7 Change Student Class\n8 Execute queued operations (5,6 and 7)\n9 List of failed operations" << std::endl;
+        "6 Add Student to Class/UC\n7 Change Student Class\n8 Execute queued operations (5,6 and 7)\n9 List of failed operations\n10 Write to file" << std::endl;
         std::string input;
         std::cin >> input;
         getchar(); //CATCH \n
@@ -239,6 +248,7 @@ int main(){
         // 7 alterar turma
         // 8 fazer as coisas na fila
         // 9 ver lista de coisas falhadas
+        // 10 escrever
         if(input=="1"){
             menu1(sus);
         }
@@ -262,12 +272,12 @@ int main(){
             catch(invalid_argument e){
                 num=sus.studentNames.find(name)->second;
             }
-            if(sus.getStudent(num)==nullptr) cout << "Student does not exist. ";
+            if(sus.getStudent(num)==nullptr) cout << "Student does not exist.";
             else {
                 cout << "UC Name?";
                 std::string UCName = "";
                 cin >> UCName;
-                if (sus.getUC(UCName) == nullptr) cout << "UC does not exist. ";
+                if (sus.getUC(UCName) == nullptr) cout << "UC does not exist.";
                 else {
                     request newRequest;
                     newRequest.num = num;
@@ -280,7 +290,7 @@ int main(){
         }
         else if(input=="6"){
             std::string name = "";
-            std::cout << "Student number or name? ";
+            std::cout << "Student number or name?";
             unsigned long int num;
             getline(cin,name);
             try{
@@ -289,17 +299,17 @@ int main(){
             catch(invalid_argument e){
                 num=sus.studentNames.find(name)->second;
             }
-            if(sus.getStudent(num) == nullptr) cout << "Student not found. ";
+            if(sus.getStudent(num) == nullptr) cout << "Student not found.";
             else {
                 cout << "UC Name?";
                 std::string UCName = "";
                 std::cin >> UCName;
-                if(sus.getUC(UCName)== nullptr) cout << "Student not found. ";
+                if(sus.getUC(UCName)== nullptr) cout << "Student not found.";
                 else {
                     std::cout << "Which class? ";
                     std::string className = "";
                     cin >> className;
-                    if(sus.getUC(UCName)->classes.find(className)==sus.getUC(UCName)->classes.end()) cout << "Class not found. ";
+                    if(sus.getUC(UCName)->classes.find(className)==sus.getUC(UCName)->classes.end()) cout << "Class not found.";
                     else {
                         request newRequest;
                         newRequest.num = num;
@@ -313,7 +323,7 @@ int main(){
         }
         else if(input=="7"){
             std::string name = "";
-            std::cout << "Student number or name? ";
+            std::cout << "Student number or name?";
             unsigned long int num;
             std::getline(std::cin,name);
             try{
@@ -322,17 +332,17 @@ int main(){
             catch(invalid_argument e){
                 num=sus.studentNames.find(name)->second;
             }
-            if(sus.getStudent(num)== nullptr) std::cout << "Student not found. ";
+            if(sus.getStudent(num)== nullptr) std::cout << "Student not found.";
             else {
                 cout << "UC Name?";
                 std::string UCName = "";
                 std::cin >> UCName;
-                if(sus.getUC(UCName)== nullptr) std::cout<< "UC not found. ";
+                if(sus.getUC(UCName)== nullptr) std::cout<< "UC not found.";
                 else {
                     std::cout << "Which class? ";
                     std::string className = "";
                     cin >> className;
-                    if(sus.getUC(UCName)->classes.find(className) == sus.getUC(UCName)->classes.end()) std::cout << "Class not found. ";
+                    if(sus.getUC(UCName)->classes.find(className) == sus.getUC(UCName)->classes.end()) std::cout << "Class not found.";
                     else {
                         request newRequest;
                         newRequest.num = num;
@@ -359,6 +369,9 @@ int main(){
                 if(i.operation!=5) cout << "Couldn't add student " << i.num << "to class " << i.destination << "of UC " << i.uc->name << std::endl;
                 else cout << "Couldn't remove student " << i.num << "from class " << i.destination << "of UC " << i.uc->name << std::endl;
             }
+        }
+        else if(input=="10"){
+            menu10(sus);
         }
         else exit = true;
         if(!exit) {
