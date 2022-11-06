@@ -2,7 +2,7 @@
 // Created by tomas on 28/10/2022.
 //
 
-#define maximo 25
+#define MAXIMO 25
 
 #include "class_change.h"
 #include "Class_Hour.h"
@@ -28,7 +28,7 @@ bool class_change::check_size(UC *uc, std::string class1, std::string class2) {
         else if(temp<min) min=temp;
     }
 
-    return((max-min)<=4 && max<=maximo);
+    return((max-min)<=4 && max<=MAXIMO);
 }
 
 bool class_change::remove_Uc(Student* student, UC* uc) {

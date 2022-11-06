@@ -17,7 +17,14 @@ class Student{
         unsigned long int num;
         std::map<UC*,std::string > classes; //turmas
         Student(std::string name, unsigned long int num);
+        /**
+            * @brief Construtor do objeto Student.
+            * Complexidade O(1)
+            * @param  std::string name -- nome aluno
+             *@param  unsigned long int num -- número do aluno
 
-    
+            */
+
+
 };
 #endif

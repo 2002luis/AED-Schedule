@@ -12,6 +12,13 @@ public:
     std::vector<Lecture> lectures;
     std::string ucName, name;
     Class_Hour(std::string name, std::string ucName);
+    /**
+        * @brief Construtor do objeto Class_Hour(turma).
+        * Complexidade O(1)
+        * @param  std::string name
+        * @param  std::string ucName
+
+        */
 };
 
 
