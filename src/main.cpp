@@ -220,10 +220,6 @@ int main(){
     Filereader::readStudents(sus);
     std::queue<request> requests;
     std::list<request> failedRequests;
-    //cout << Timetable(*sus.getStudent(202071557));
-    //READ FILES
-
-    //cout << sus.getUC("L.EIC001")->classes.find("1LEIC02")->second->students[0] << endl;
 
 
     bool exit = false;

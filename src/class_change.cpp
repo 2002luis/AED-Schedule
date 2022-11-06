@@ -74,60 +74,19 @@ bool class_change::add_Uc(Student* student, UC* uc,std::string turma){
 
     return(true);
 }
-void class_change::remove_Class(Student* student) {
-    std::map<UC*, std::string>::iterator it = student->classes.begin();
-    for( it; it != student->classes.end(); it++ ){
-        remove_Uc(student,it->first);
-    }
-}
-//void class_change::add_Class(Student* student,std::string turma, Program_data a){
-//}
+
 bool class_change::can_switch(Student *student, UC *uc, std::string turma) {
 
     std::string curClass = student->classes.find(uc)->second;
     if(!class_change::check_size(uc,turma,student->classes.find(uc)->second)) return(false);
-    //Timetable cur(*student), ntable(*uc->classes.find(turma)->second);
-    //if (!cur.add(ntable)) return (false);
+
     if(!class_change::remove_Uc(student,uc)) return(false);
     if(!class_change::add_Uc(student,uc,turma)){
 
         class_change::add_Uc(student,uc,curClass);
         return(false);
     }
-    /*
-    Class_Hour turmafutura = *uc->classes.find(turma)->second;
 
-    Student temp = *student;
-
-    Timetable horario = Timetable(temp);
-
-    if(temp.classes.find(uc)!=temp.classes.end()) remove_Uc(temp,uc);
-
-    Timetable cadeira = Timetable(*uc->classes.find(turma)->second);
-    // e tamanho da propria turma
-    if ( turmaatual.students.size() >= maximo) return false;
-    int newmin = uc->min, newmax = uc->max;
-    uc->difference();
-    int diffturmaatual = turmaatual.students.size() -1;
-    int diffturmafutura = turmafutura.students.size() +1;
-    if(diffturmaatual < uc->min) {
-        if(uc->max - diffturmaatual > 4 || diffturmafutura - diffturmaatual > 4)
-            return false; }
-    else newmin = diffturmaatual;
-    if(diffturmafutura > uc->max) {
-        if(uc->min + 4 >= diffturmafutura > 4 || diffturmafutura - diffturmaatual > 4)
-            return false; }
-    else newmax = diffturmafutura;
-    uc->min = newmin;
-    uc->max = newmax;
-    if(horario.add(cadeira)) {
-        remove_Uc(*student,uc);
-        add_Uc(student,uc,turma);
-        Timetable horario = Timetable(*student);
-        horario.add(cadeira);
-        return true;}
-    return false;
-     */
     return(true);
 }
 

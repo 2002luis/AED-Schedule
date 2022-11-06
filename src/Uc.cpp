@@ -9,17 +9,3 @@ UC::UC(std::string code){
     this->name= code;
 }
 
-int UC::difference() {
-
-    for(auto i : classes){
-
-        unsigned char num =  i.second->students.size();
-
-        if(num < min) { this->min = num;}
-
-        if(num > max) {this->max = num;}
-    }
-
-    return(max-min);
-
-}
